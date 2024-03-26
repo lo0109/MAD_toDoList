@@ -24,10 +24,10 @@ export default function App() {
         </View>
       </View>
 
-      {/* <View style={{alignItems:'center',width:'100%', justifyContent:'center', marginBottom:40}}>
+      <View style={{alignItems:'center',width:'100%', justifyContent:'center', marginBottom:40}}>
         <View style={[styles.line, {height:2}]}/>
         <Text style={styles.addToDo} onPress={pressme}>Add NEW ToDo</Text>
-      </View> */}
+      </View>
       <StatusBar style="auto" />
     </View>
   );
