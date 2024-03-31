@@ -4,6 +4,8 @@
 *.doc
 *.docx
 *.pdf
+backup.js
+
 
 # dependencies
 node_modules/
