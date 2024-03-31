@@ -4,7 +4,6 @@ import { NavigateButton } from '../components/NavigateButton';
 import { DisplayList } from '../components/ToDoList';
 import { useState } from 'react';
 
-const pressme = () => console.log('Pressed');
 const toDoList = [{id:'1', name:'Buy milk'}, {id:'2',name:'Buy bread'}, {id:'3',name:'Buy eggs'}]; 
 export const Home = () => {
     // const [todos, setTodos] = useState([]);

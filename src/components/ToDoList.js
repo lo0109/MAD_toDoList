@@ -4,8 +4,8 @@ export const DisplayList = ({item}) => {
     return (
         <View>{item.map((item, key) => {
             return (
-            <View style={styles.list}>
-                <Text style={styles.listItem} key={item.id}>{item.name}</Text>
+            <View style={styles.list} key={item.id}>
+                <Text style={styles.listItem}>{item.name}</Text>
             </View>
             );
         })}

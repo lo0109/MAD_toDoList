@@ -25,9 +25,22 @@ export const AddTodo = ({navigation}) =>{
               <View>
                 <View style={styles.line}/>
               </View>
-     
+              <View>
+                <Text style={styles.titleText}>Subject</Text>
+                <TextInput 
+                    style={styles.textbox} 
+                    placeholder='Subject...' 
+                    value={subject} 
+                    onChangeText={changeSubHandler}/>
+                <Text style={styles.titleText}>Description</Text>
         
-
+                <TextInput 
+                    style={styles.textbox} 
+                    placeholder='Item Description...' 
+                    multiline={true}
+                    value={text} 
+                    onChangeText={changeTextHandler}/>
+              </View>
             </View>
             <View style={styles.bottom} >
                 <View style={[styles.line, {height:2}]}/>
