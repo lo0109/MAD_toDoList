@@ -30,7 +30,11 @@ export const Home = () => {
               <View>
                 <View style={styles.line}/>
               </View>
-              <DisplayList item={toDoList} />
+              {/* <FlatList 
+                data ={tasks}
+                renderItem={ ({item})=> <DisplayList item={item} cmp={completeTask} del = {deleteTask} />}
+                keyExtractor={t => t.id}
+                /> */}
             </View>
 
           <View style={styles.bottom}>

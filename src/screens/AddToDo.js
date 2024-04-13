@@ -1,20 +1,30 @@
 import { StyleSheet, Text, View , TextInput, FlatList} from 'react-native';
 import { NavigateButton } from '../components/NavigateButton';
 import { useState } from 'react';
+import { DisplayList } from '../components/ToDoList';
 
 
 export const AddTodo = ({navigation}) =>{
     const goBackHandler = () =>{
-        navigation.goBack();
+        (text == '' || subject == '') ? console.log('empty input') :navigation.goBack() ;
     };
-    const saveHandler = () =>{
-        console.log('Saved');
-    };
+    // const saveHandler = () =>{
+    //     console.log('Saved');
+    // };
     const [subject, setSubject] = useState('');
     const [text, setText] = useState('');
-    const changeTextHandler =(val) => setText(val);
-    const changeSubHandler =(val) => setSubject(val);
+    const [tasks, setTasks] = useState([]);
+    // const changeTextHandler =(val) => setText(val);
+    // const changeSubHandler =(val) => setSubject(val);
+    const addText =()=> {
+        if (subject==="") return ;
+        const maxid = tasks.reduce((a,tk)=> Math.max(a,tk.id), 0);
+        setTasks(tasks => [...tasks, {id:maxid+1, subject, text, completed: false}]);
 
+        setSubject('');
+        setText('');
+        navigation.goBack()
+    }
 
     return (
         <View style={styles.container}>
@@ -31,22 +41,32 @@ export const AddTodo = ({navigation}) =>{
                     style={styles.textbox} 
                     placeholder='Subject...' 
                     value={subject} 
-                    onChangeText={changeSubHandler}/>
+                    onChangeText={setSubject}/>
+                <View>
+                </View>
                 <Text style={styles.titleText}>Description</Text>
-        
+                
                 <TextInput 
                     style={styles.textbox} 
                     placeholder='Item Description...' 
                     multiline={true}
-                    value={text} 
-                    onChangeText={changeTextHandler}/>
+                    value={text}
+                    onChangeText={setText}/>
+                
+                {tasks.map((tks)=> (
+                    <View key={tks.id}>
+                        <Text>Item: {tks.id}</Text>
+                        <Text> Subject: {tks.subject}</Text>
+                    </View>
+                )
+                )}
               </View>
             </View>
             <View style={styles.bottom} >
                 <View style={[styles.line, {height:2}]}/>
                 <View style={styles.button} >
                     <NavigateButton icon='backspace-outline' label="Cancel" fun={goBackHandler}/>
-                    <NavigateButton icon='archive-outline' label="Save" fun={saveHandler}/>
+                    <NavigateButton icon='archive-outline' label="Save" fun={addText}/>
                 </View>
             </View>
         </View>
