@@ -15,7 +15,7 @@ export const AddTodo = ({ navigation, tasks, setTasks }) => {
     const [text, setText] = useState('');
 
     const addText = () => {
-        if (subject === "") return;
+        if (subject === "" || text==='') return;
         const maxid = tasks.reduce((a, tk) => Math.max(a, tk.id), 0);
         setTasks(tasks => [...tasks, { id: maxid + 1, subject, text, completed: false }]);
         saveData(tasks)
