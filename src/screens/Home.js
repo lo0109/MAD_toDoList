@@ -26,15 +26,24 @@ export const Home = ({ tasks, setTasks }) => {
         <View>
           <View style={styles.line} />
         </View>
-        <ScrollView style={styles.tasklist} > 
+
+        {/* <ScrollView style={styles.tasklist} > 
         {tasks.map((t) => ( <View key={t.id}>
-            <DisplayList tasks={t}/>
+            <DisplayList tasks={t} setTasks={setTasks} />
             </View>))}
-        </ScrollView>
-        {/* <ScrollView>
-        {tasks.map((task) => 
-          (<Text>{task.subject}</Text>))}
         </ScrollView> */}
+        {/* <FlatList
+          data={tasks}
+          renderItem={ ({item})=> <DisplayList tasks={tasks} setTasks={setTasks} />}
+          keyExtractor={tasks.id}
+
+        />   */}
+        
+        <ScrollView style={styles.tasklist} > 
+        
+            <DisplayList tasks={tasks} setTasks={setTasks} />
+
+        </ScrollView>
 
       </View>
 
