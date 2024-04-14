@@ -4,23 +4,26 @@ import { useState } from "react";
 export const DisplayList = ({ tasks, setTasks }) => {
 
     const [toggle, setToggle] = useState(true);
-    const deleteTask = (itemId) => {
-        const objWithIdIndex = tasks.findIndex(
-            (object) => object.id === itemId
-        );
-        const updatedList = [...tasks];
-        updatedList.splice(objWithIdIndex, 1);
-        setTasks(updatedList);
+    
+        const deleteTask = (id) => {
+        console.log('delete')
+        setTasks(tks => tks.filter(t => t.id != id)
+        )
     };
 
-    const completeTask = (itemId) => {
-        const objWithIdIndex = tasks.findIndex(
-            (object) => object.id === itemId
-        );
-        const updatedList = [...tasks];
-        updatedList[objWithIdIndex].completed = true;
-        setTasks(updatedList);
+    const completeTask = (id) => {
+        console.log('complete')
+        setTasks(tks => {
+            const newtks = tks.map(t => {
+                const newlist = { ...t };
+                if (t.id === id)
+                    newlist.completed = true
+                return newlist
+            })
+            return newtks
+        })
     };
+
 
     return (
         <View>
@@ -72,21 +75,20 @@ const styles = StyleSheet.create(
 )
 
 
-    // const deleteTask = (id) => {
-    //     console.log('delete')
-    //     setTasks(tks => tks.filter(t => t.id != id)
-    //     )
+    // const deleteTask = (itemId) => {
+    //     const objWithIdIndex = tasks.findIndex(
+    //         (object) => object.id === itemId
+    //     );
+    //     const updatedList = [...tasks];
+    //     updatedList.splice(objWithIdIndex, 1);
+    //     setTasks(updatedList);
     // };
 
-    // const completeTask = (id) => {
-    //     console.log('complete')
-    //     setTasks(tks => {
-    //         const newtks = tks.map(t => {
-    //             const newlist = { ...t };
-    //             if (t.id === id)
-    //                 newlist.completed = true
-    //             return newlist
-    //         })
-    //         return newtks
-    //     })
+    // const completeTask = (itemId) => {
+    //     const objWithIdIndex = tasks.findIndex(
+    //         (object) => object.id === itemId
+    //     );
+    //     const updatedList = [...tasks];
+    //     updatedList[objWithIdIndex].completed = true;
+    //     setTasks(updatedList);
     // };
