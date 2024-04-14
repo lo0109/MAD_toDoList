@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, Button } from "react-native";
 import { TaskButton } from "./TaskButton";
+import { useState } from "react";
 export const DisplayList = ({ tasks, setTasks }) => {
 
-
+    const [toggle, setToggle] = useState(true);
     const deleteTask = (itemId) => {
         const objWithIdIndex = tasks.findIndex(
             (object) => object.id === itemId
@@ -23,18 +24,23 @@ export const DisplayList = ({ tasks, setTasks }) => {
 
     return (
         <View>
-            {tasks.map((tasks) => (
-    
+                
             <View key={tasks.id} style={styles.list}>
-                <Text style={styles.listItem}>Subject: {tasks.subject}</Text>
-                <Text style={styles.ItemDes} > Description: {tasks.text}</Text>
+                <View style={{flexDirection:'row', flex:1, justifyContent: 'space-between'}} >
+                    <View>
+                        <Text style={styles.listItem}>Subject: {tasks.subject}</Text>
+                    </View>
+                    <View>
+                        <TaskButton  fun={()=> setToggle(!toggle)} icon='chevron-expand-outline'/>
+                    </View>
+                </View>
+                {toggle && <Text style={styles.ItemDes} > Description: {tasks.text}</Text>}
                 <View style={styles.buttonView} >
                     {!tasks.completed && <TaskButton fun={() => completeTask(tasks.id)} icon='checkmark-done-sharp' />}
                     <TaskButton fun={() => deleteTask(tasks.id)} icon='trash-sharp'/>
                 </View>
             </View>
-            ))
-}
+
         </View>
     );
 };

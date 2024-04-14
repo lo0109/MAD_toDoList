@@ -13,8 +13,6 @@ export const TaskButton =({icon, fun})=>{
 
 const styles = StyleSheet.create({
     container: {
-        width: 180,
-        height: 50,
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',

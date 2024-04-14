@@ -27,23 +27,21 @@ export const Home = ({ tasks, setTasks }) => {
           <View style={styles.line} />
         </View>
 
-        {/* <ScrollView style={styles.tasklist} > 
-        {tasks.map((t) => ( <View key={t.id}>
-            <DisplayList tasks={t} setTasks={setTasks} />
-            </View>))}
-        </ScrollView> */}
-        {/* <FlatList
+        <FlatList
+          style={styles.tasklist}
           data={tasks}
-          renderItem={ ({item})=> <DisplayList tasks={tasks} setTasks={setTasks} />}
+          renderItem={({ item }) => <DisplayList tasks={item} setTasks={setTasks} />}
           keyExtractor={tasks.id}
 
-        />   */}
-        
-        <ScrollView style={styles.tasklist} > 
-        
-            <DisplayList tasks={tasks} setTasks={setTasks} />
+        />
 
-        </ScrollView>
+        {/* <ScrollView style={styles.tasklist} >
+          {tasks.map((tasks) => (
+            <View key={tasks.id}>
+              <DisplayList tasks={tasks} setTasks={setTasks} />
+            </View>
+          ))}
+        </ScrollView> */}
 
       </View>
 
@@ -87,6 +85,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   tasklist: {
-    height:600
+    height: 600
   }
 });
