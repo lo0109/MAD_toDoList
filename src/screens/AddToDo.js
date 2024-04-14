@@ -1,30 +1,30 @@
-import { StyleSheet, Text, View , TextInput, FlatList} from 'react-native';
+import { StyleSheet, Text, View , TextInput, FlatList, Alert} from 'react-native';
 import { NavigateButton } from '../components/NavigateButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DisplayList } from '../components/ToDoList';
-
 
 export const AddTodo = ({navigation}) =>{
     const goBackHandler = () =>{
-        (text == '' || subject == '') ? console.log('empty input') :navigation.goBack() ;
+        navigation.goBack() ;
     };
+    
     // const saveHandler = () =>{
     //     console.log('Saved');
     // };
     const [subject, setSubject] = useState('');
     const [text, setText] = useState('');
-    const [tasks, setTasks] = useState([]);
+    const [tasks, setTasks] = useState([])
+
     // const changeTextHandler =(val) => setText(val);
     // const changeSubHandler =(val) => setSubject(val);
     const addText =()=> {
         if (subject==="") return ;
         const maxid = tasks.reduce((a,tk)=> Math.max(a,tk.id), 0);
         setTasks(tasks => [...tasks, {id:maxid+1, subject, text, completed: false}]);
-
+        console.log({tasks})
         setSubject('');
         setText('');
-        navigation.goBack()
-    }
+        }
 
     return (
         <View style={styles.container}>
@@ -53,13 +53,6 @@ export const AddTodo = ({navigation}) =>{
                     value={text}
                     onChangeText={setText}/>
                 
-                {tasks.map((tks)=> (
-                    <View key={tks.id}>
-                        <Text>Item: {tks.id}</Text>
-                        <Text> Subject: {tks.subject}</Text>
-                    </View>
-                )
-                )}
               </View>
             </View>
             <View style={styles.bottom} >
