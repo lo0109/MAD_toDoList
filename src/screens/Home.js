@@ -16,15 +16,16 @@ export const Home = () => {
   const navigation = useNavigation();
   const gotoAddTodoHandler = () => {
     navigation.navigate('Add New Todo');
-    const [tasks, setTasks] = useState([])
   };
-  // const isFocused = useIsFocused();
-  // useEffect( ()=> {
-  //     const loadData = async ()=> {
-  //         const data = await AddTodo();
 
-  //     }
-  // })
+  useEffect( ()=>{
+    const firstload = async()=>{
+        const data =await loadData()
+        setTasks(data.tasks)
+    }
+    firstload()
+},[])
+
   const deleteTask = (id) => {
     setTasks(tks=> tks.filter(t=> t.id != id)
     )};

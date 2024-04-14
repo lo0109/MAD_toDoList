@@ -2,6 +2,7 @@ import { StyleSheet, Text, View , TextInput, FlatList, Alert} from 'react-native
 import { NavigateButton } from '../components/NavigateButton';
 import { useEffect, useState } from 'react';
 import { DisplayList } from '../components/ToDoList';
+import { loadData, saveData } from '../datamodel/mydata';
 
 export const AddTodo = ({navigation}) =>{
     const goBackHandler = () =>{
@@ -15,6 +16,14 @@ export const AddTodo = ({navigation}) =>{
     const [text, setText] = useState('');
     const [tasks, setTasks] = useState([])
 
+    useEffect( ()=>{
+        const firstload = async()=>{
+            const data =await loadData()
+            setTasks(data.tasks)
+        }
+        firstload()
+    },[])
+
     // const changeTextHandler =(val) => setText(val);
     // const changeSubHandler =(val) => setSubject(val);
     const addText =()=> {
@@ -22,6 +31,9 @@ export const AddTodo = ({navigation}) =>{
         const maxid = tasks.reduce((a,tk)=> Math.max(a,tk.id), 0);
         setTasks(tasks => [...tasks, {id:maxid+1, subject, text, completed: false}]);
         console.log({tasks})
+        useEffect( ()=>{
+            saveData({tasks})
+        },[tasks]);
         setSubject('');
         setText('');
         }
